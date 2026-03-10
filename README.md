@@ -14,3 +14,7 @@ This repository contains my personal solutions to various LeetCode challenges. M
 ## 🗂 Structure
 - `Easy/`: Beginner-friendly problems for logic building.
 - `Medium/`: Intermediate challenges focusing on optimization.
+
+## 🔗 Profiles
+- **LeetCode Profile:** [https://leetcode.com/u/mo_mo_mousa/](https://leetcode.com/u/mo_mo_mousa/)
+- **LinkedIn:** [Mahmoud Mousa](https://www.linkedin.com/in/mahmoud-mousa-dev/)
