@@ -1,0 +1,21 @@
+/**
+ * Problem: 006-Number of Steps to Reduce a Number to Zero
+ * Difficulty: Easy
+ * https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/
+ * * Strategy: itreration
+ */
+
+var numberOfSteps = function(num) {
+    let counter=0;
+    while(num!==0){
+        //odd num
+        if(num%2!==0) num--
+    //even
+    else if(num%2==0) num/=2
+    counter++
+    }
+    return counter
+};
+
+// Time Complexity: O(logn)
+// Space Complexity: O(1)
