@@ -1,0 +1,20 @@
+/**
+ * Problem: 412. Fizz Buzz
+ * Difficulty: Easy
+ * Link: https://leetcode.com/problems/fizz-buzz/
+ * Strategy: Conditional Logic (Simulation)
+ */
+
+var fizzBuzz = function(n) {
+    let finalArray = [];
+    for (let i = 1; i <= n; i++) {
+        if (i % 3 === 0 && i % 5 === 0) finalArray.push("FizzBuzz");
+        else if (i % 3 === 0) finalArray.push("Fizz");
+        else if (i % 5 === 0) finalArray.push("Buzz");
+        else finalArray.push(i.toString());   
+    }
+    return finalArray;
+};
+
+* Time Complexity: O(n)
+ * Space Complexity: O(n)
