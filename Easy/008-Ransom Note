@@ -1,0 +1,24 @@
+/**
+ * Problem: 383. Ransom Note
+ * Strategy: Hash Map (Frequency Counter)
+ * Time Complexity: O(m + n) - where m and n are lengths of strings.
+ * Space Complexity: O(k) - where k is number of unique characters (max 26).
+ */
+var canConstruct = function(ransomNote, magazine) {
+    let map = {};
+
+    // 1. نعد الحروف المتاحة في المجلة
+    for (let char of magazine) {
+        map[char] = (map[char] || 0) + 1;
+    }
+
+    // 2. نحاول نكون الرسالة من الحروف اللي عديناها
+    for (let char of ransomNote) {
+        if (!map[char] || map[char] === 0) {
+            return false; // لو الحرف مش موجود أو خلص
+        }
+        map[char]--; // نخصم حرف من المخزن
+    }
+
+    return true;
+};
