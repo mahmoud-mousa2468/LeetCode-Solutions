@@ -1,0 +1,30 @@
+/**
+ * Problem: 977. Squares of a Sorted Array
+ * Difficulty: Easy
+ * Link: https://leetcode.com/problems/squares-of-a-sorted-array/
+ * * Strategy: Two Pointers
+ */
+
+var sortedSquares = function(nums) {
+    let n=nums.length
+    let result=new Array(n)
+    let left=0
+    let right=n-1
+    let pos=n-1
+    while(left<=right){
+        let leftSquare=nums[left]*nums[left]
+        let rightSquare=nums[right]*nums[right]
+        if(leftSquare>rightSquare){
+            result[pos]=leftSquare
+            left++
+        }else{
+            result[pos]=rightSquare
+            right--
+        }
+        pos--
+    }
+    return result
+};
+
+// Time Complexity: O(n)
+// Space Complexity: O(n)
