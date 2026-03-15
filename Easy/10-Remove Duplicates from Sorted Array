@@ -1,0 +1,26 @@
+/**
+ * Problem: 26. Remove Duplicates from Sorted Array
+ * Difficulty: Easy
+ * Link: https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+ * * Strategy: Two Pointers
+ */
+
+var removeDuplicates = function(nums) {
+    let k=0
+    if(nums.length===0)return k
+    for(let i=0;i<nums.length;i++){
+        let l=i
+        let r=i+1
+        while(r<nums.length && nums[l]===nums[r]){
+            l++
+            r++
+        }
+        nums[k]=nums[l]
+        k++
+        i=l 
+    }
+    return k
+};
+
+// Time Complexity: O(n) - Each element is visited at most twice.
+// Space Complexity: O(1) - Modified in-place without extra memory.
