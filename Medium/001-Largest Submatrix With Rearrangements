@@ -1,0 +1,45 @@
+/**
+ * Problem: 1727. Largest Submatrix With Rearrangements
+ * Difficulty: Medium
+ * Link: https://leetcode.com/problems/largest-submatrix-with-rearrangements/
+ * * Strategy: 
+ * 1. Convert the binary matrix into a "height" matrix where each cell stores 
+ * the number of consecutive 1s above it.
+ * 2. For each row, sort the heights in descending order to group the tallest 
+ * possible columns together.
+ * 3. Calculate the maximum area by iterating through the sorted heights.
+ */
+
+var largestSubmatrix = function(matrix) {
+    const rows = matrix.length;
+    const cols = matrix[0].length;
+    let maxArea = 0;
+
+    // Step 1: Calculate cumulative heights for each column
+    for (let i = 1; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            if (matrix[i][j] === 1) {
+                matrix[i][j] += matrix[i - 1][j];
+            }
+        }
+    }
+
+    // Step 2: Iterate through each row and sort heights to find the max area
+    for (let i = 0; i < rows; i++) {
+        // We take a shallow copy to sort without affecting the original matrix structure during the loop
+        let currentRow = [...matrix[i]].sort((a, b) => b - a);
+
+        for (let j = 0; j < cols; j++) {
+            if (currentRow[j] === 0) break; // Optimization: no need to check zero heights
+            
+            // Area = Height * Width (where width is j + 1)
+            let area = currentRow[j] * (j + 1);
+            maxArea = Math.max(maxArea, area);
+        }
+    }
+
+    return maxArea;
+};
+
+// Time Complexity: O(m * n log n) where m is rows and n is columns (due to sorting each row)
+// Space Complexity: O(n) for the sorted copy of each row
