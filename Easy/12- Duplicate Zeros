@@ -1,0 +1,43 @@
+/**
+ * Problem: 1089. Duplicate Zeros
+ * Difficulty: Easy
+ * Link: https://leetcode.com/problems/duplicate-zeros/
+ * Strategy: first we count the Zeros num to determine what last element will be in the array then we use Two Pointer to 
+ * fill the array from end 
+ */
+
+var duplicateZeros = function(arr) {
+    let l=arr.length
+    let stopIndex=0
+    let limit=l-1
+    let zeros=0
+    for(i=0;i<=limit-zeros;i++){
+        stopIndex=i
+        if(arr[i]===0){
+            if(i===limit-zeros){
+                arr[l-1]=0
+                limit--
+                stopIndex--
+                break
+            }
+            zeros++
+        }
+    }
+    let j=stopIndex
+    let p=limit
+    while(j>=0){
+        if(arr[j]===0){
+            arr[p]=0
+            p--
+            arr[p]=0
+        }else{
+            arr[p]=arr[j]
+        }
+        j--
+        p--
+    }
+    
+};
+
+// Time Complexity:o(n)
+// Space Complexity: O(1)
