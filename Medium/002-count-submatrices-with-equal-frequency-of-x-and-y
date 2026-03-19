@@ -1,0 +1,38 @@
+/**
+ * Problem: 3212. Count Submatrices With Equal Frequency of X and Y
+ * Difficulty: Medium
+ * Link: https://leetcode.com/problems/count-submatrices-with-equal-frequency-of-x-and-y/
+ * Strategy: Matrix Prefix Sum 
+ */
+
+var numberOfSubmatrices = function(grid) {
+    let counterSub=0
+    let rows=grid.length
+    let cols=grid[0].length
+    let prefix=Array.from({length:rows},()=>
+               Array.from({length:cols},()=>[0,0]))
+    for(let i=0;i<rows;i++){
+        for(let j=0;j<cols;j++){
+            let counterX=grid[i][j]==='X' ? 1:0
+            let counterY=grid[i][j]==='Y' ? 1:0 
+            if(i>0){
+                counterX+=prefix[i-1][j][0]
+                counterY+=prefix[i-1][j][1]
+            }
+            if(j>0){
+                counterX+=prefix[i][j-1][0]
+                counterY+=prefix[i][j-1][1]
+            }
+            if(i>0&&j>0){
+                counterX-=prefix[i-1][j-1][0]
+                counterY-=prefix[i-1][j-1][1]
+            }
+            if(counterX===counterY&&counterX!==0)counterSub++
+            prefix[i][j]=[counterX,counterY]
+        }
+    }
+    return counterSub
+};
+
+// Time Complexity:o(m*n)
+// Space Complexity: O(m*n)
